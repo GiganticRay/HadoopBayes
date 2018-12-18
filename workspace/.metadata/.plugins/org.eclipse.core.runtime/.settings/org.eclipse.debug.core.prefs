@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+org.eclipse.debug.core.PREF_DELETE_CONFIGS_ON_PROJECT_DELETE=false
+org.eclipse.debug.core.USE_STEP_FILTERS=false
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="itr.str"/>\n<expression enabled\="true" text\="word.toString()"/>\n<expression enabled\="true" text\="one"/>\n<expression enabled\="true" text\="IsPraise.toString().equals(&quot;\u597D\u8BC4&quot;)"/>\n<expression enabled\="true" text\="featureFrequency.get(&quot;08.4IsPraise&quot;).value"/>\n<expression enabled\="true" text\="value.toString()"/>\n</watchExpressions>\n
