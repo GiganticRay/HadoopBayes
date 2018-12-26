@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -96,6 +97,9 @@ public class BayesClassfier
 			Double IsPraiseProb = 1.0 * (AllIsPraiseCount/AllCount);
 			Double IsNotPraiseProb = 1.0 * (AllIsNotPraiseCount/AllCount);
 			
+			BigDecimal IsPProbedecimal = new BigDecimal(IsPraiseProb);
+			BigDecimal IsNPProbedecimal = new BigDecimal(IsNotPraiseProb);
+			
 			// 本条记录的好坏
 			String IsThisPraise = "";
 						
@@ -112,12 +116,15 @@ public class BayesClassfier
 				Double itrWordIsPraiseCount = 1.0 * ((BayesClassfier.featureFrequency.containsKey((itrWord + "IsPraise"))) ? BayesClassfier.featureFrequency.get(itrWord + "IsPraise") : 0);
 				Double itrWordIsNotPraiseCount = 1.0 * ((BayesClassfier.featureFrequency.containsKey((itrWord + "IsNotPraise"))) ? BayesClassfier.featureFrequency.get(itrWord + "IsNotPraise") : 0);
 				
-				IsPraiseProb *=  itrWordIsPraiseCount / AllIsPraiseCount;
-				IsNotPraiseProb *= itrWordIsNotPraiseCount / AllIsNotPraiseCount;
+//				IsPraiseProb *=  itrWordIsPraiseCount / AllIsPraiseCount;
+//				IsNotPraiseProb *= itrWordIsNotPraiseCount / AllIsNotPraiseCount;
+
+				IsPProbedecimal = IsPProbedecimal.multiply(new BigDecimal(itrWordIsPraiseCount / AllIsPraiseCount));
+				IsNPProbedecimal = IsNPProbedecimal.multiply(new BigDecimal(itrWordIsNotPraiseCount / AllIsNotPraiseCount));
 			}
-//			System.out.println(IsPraiseProb + ", " + IsNotPraiseProb);
-			IsPraise = (IsPraiseProb > IsNotPraiseProb) ? "好评" : "差评";
-			// 说明预测准确
+//			IsPraise = (IsPraiseProb > IsNotPraiseProb) ? "好评" : "差评";
+			IsPraise = (IsPProbedecimal.compareTo(IsNPProbedecimal) == 1) ? "好评" : "差评";
+//			说明预测准确
 //			if(IsThisPraise.equals(IsPraise) && IsThisPraise.equals("好评")){
 			if(IsThisPraise.equals(IsPraise)){
 				BayesClassfier.preciseCount++;
@@ -137,7 +144,7 @@ public class BayesClassfier
 		public static void GetFrequencyFile(String[] otherArgs) throws Exception{
 			Job trainJob = new Job(conf, "word count2");	// 新建一个 Job，传入配置信息	JobTrack 和 TaskTrack 都是 MRv1 用的东西了
 			// region
-			trainJob.setJar("wordcount2.jar");			// 设置运行的jar文件
+//			trainJob.setJar("wordcount2.jar");			// 设置运行的jar文件
 			// endregion
 			trainJob.setJarByClass(wordcount2.class);		// 设置主类
 			trainJob.setMapperClass(TokenizerMapper.class);	// 设置 Mapper 类
@@ -158,7 +165,7 @@ public class BayesClassfier
 		public static void InitFrequencyMap() throws Exception{
 			// countFrequencyJob: 判断输入文件中每一行的值
 			Job countFrequencyJob = new Job(conf, "countFrequencyJob");
-			countFrequencyJob.setJar("wordcount2.jar");
+//			countFrequencyJob.setJar("wordcount2.jar");
 			countFrequencyJob.setMapperClass(BayesInitMapper.class);	// 设置 Mapper 类
 			countFrequencyJob.setNumReduceTasks(0);   	 			//reduce的数量设为0
 			
@@ -180,11 +187,11 @@ public class BayesClassfier
 			// 写一个 Predict Map、在定义一个job3, 读取每一行、然后分别算出 好评/差评的概率来比较、最终输出到文件
 			// countFrequencyJob: 判断输入文件中每一行的值
 			Job predictJob = new Job(conf, "countFrequencyJob");
-			predictJob.setJar("wordcount2.jar");
+//			predictJob.setJar("wordcount2.jar");
 			predictJob.setMapperClass(BayesPredictMapper.class);	// 设置 Mapper 类
 			predictJob.setNumReduceTasks(0);   	 			//reduce的数量设为0
 			
-			FileInputFormat.addInputPath(predictJob, new Path("hdfs://192.168.10.100:9000/user/Hadoop/BayesData/training-1000.txt"));	// 文件输入
+			FileInputFormat.addInputPath(predictJob, new Path("hdfs://192.168.10.100:9000/user/Hadoop/BayesData/test-1000.txt"));	// 文件输入
 			FileOutputFormat.setOutputPath(predictJob, new Path("hdfs://192.168.10.100:9000/user/Hadoop/eclipseOutput4"));// 文件输出
 			boolean flag = predictJob.waitForCompletion(true);
 			System.out.println("GetFrequencyMap SUCCEED!" + flag);

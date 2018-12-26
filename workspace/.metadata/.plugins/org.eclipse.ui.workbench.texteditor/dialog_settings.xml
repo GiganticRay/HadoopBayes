@@ -2,8 +2,8 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="316" key="DIALOG_WIDTH"/>
-		<item value="242" key="DIALOG_Y_ORIGIN"/>
-		<item value="1151" key="DIALOG_X_ORIGIN"/>
+		<item value="257" key="DIALOG_Y_ORIGIN"/>
+		<item value="1219" key="DIALOG_X_ORIGIN"/>
 		<item value="430" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="" key="selection"/>
+		<item value="bool" key="selection"/>
 		<list key="findhistory">
-			<item value="=="/>
-			<item value="FileSystem fileSystem = FileSystem.get(new URI(&quot;hdfs://192.168.10.100:9000&quot;), conf);"/>
-			<item value="word.set(IsPraise);"/>
-			<item value="exist"/>
-			<item value="exit"/>
-			<item value="IsPraiseIsNotPraise"/>
-			<item value="IsNotPraiseIsNotPraise"/>
-			<item value="IsNotPraise"/>
+			<item value="bool"/>
+			<item value="123"/>
+			<item value="System.o"/>
+			<item value="setjar"/>
+			<item value="featureFrequency"/>
+			<item value="BayesPredictMapper"/>
+			<item value="training"/>
+			<item value="train"/>
 		</list>
 		<list key="replacehistory">
 		</list>
