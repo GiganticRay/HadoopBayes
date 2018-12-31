@@ -1,0 +1,22 @@
+// Get Frequency File
+./hadoop jar /home/ray/workspace/NBGetFreFile.jar NBMain /input_2016082074/training-100000.txt /user/Hadoop/eclipseOutput2
+
+// Predict
+./hadoop jar /home/ray/workspace/NBPredict.jar NBMain /input_2016082074/test-1000.txt /user/Hadoop/eclipseOutput4
+
+Test：
+./hadoop jar /home/hadoopUser/hadoop2.2/hadoop-2.2.0/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.2.0.jar wordcount TestFolder/wc_input TestFolder/wc_output
+
+
+
+training-100000
+
+
+		
+// 删除输出的文件夹、没有找到不产生输出文件的方法...
+//				FileSystem fileSystem = FileSystem.get(new URI("hdfs://192.168.10.100:9000"), conf);
+//				if (fileSystem.exists(new Path("/user/Hadoop/eclipseOutput4"))) {
+//					fileSystem.delete(new Path("/user/Hadoop/eclipseOutput4"), true);
+//					System.out.println("delete output file SUCCEED!");
+//				}
+
