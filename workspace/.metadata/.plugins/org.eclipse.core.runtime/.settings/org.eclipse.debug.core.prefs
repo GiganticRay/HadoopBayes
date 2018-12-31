@@ -2,4 +2,4 @@ eclipse.preferences.version=1
 org.eclipse.debug.core.PREF_BREAKPOINT_MANAGER_ENABLED_STATE=true
 org.eclipse.debug.core.PREF_DELETE_CONFIGS_ON_PROJECT_DELETE=false
 org.eclipse.debug.core.USE_STEP_FILTERS=true
-prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="featureFrequency"/>\n<expression enabled\="true" text\="AllIsPraiseCount"/>\n<expression enabled\="true" text\="itr"/>\n</watchExpressions>\n
+prefWatchExpressions=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<watchExpressions>\n<expression enabled\="true" text\="featureFrequency"/>\n<expression enabled\="true" text\="AllIsPraiseCount"/>\n<expression enabled\="true" text\="itr"/>\n<expression enabled\="true" text\="value"/>\n<expression enabled\="true" text\="key"/>\n<expression enabled\="true" text\="context"/>\n<expression enabled\="true" text\="lineContent"/>\n</watchExpressions>\n

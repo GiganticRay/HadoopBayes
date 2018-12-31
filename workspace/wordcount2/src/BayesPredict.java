@@ -51,5 +51,5 @@ public class BayesPredict
 //					fileSystem.delete(new Path("/user/Hadoop/eclipseOutput4"), true);
 //					System.out.println("delete output file SUCCEED!");
 //				}
-		}	
+		}
 }

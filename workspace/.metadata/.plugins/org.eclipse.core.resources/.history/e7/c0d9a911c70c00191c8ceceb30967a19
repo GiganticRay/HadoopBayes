@@ -1,0 +1,105 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.util.GenericOptionsParser;
+
+import com.alibaba.fastjson.JSON;
+
+
+
+public class NBMain
+{
+	// region: 变量设置区
+	public static Configuration conf = new Configuration();	// 也可用 set 方法重新设置（会覆盖）: conf.set("fs.default.name", //"hdfs"//xxxx:9000) Configuration 类： 创建时会 | 读取 Hadoop 的配置文件，如 site-core.xml...;
+	public static int preciseCount = 0;						// 当前准确条数
+	public static int allCount = 0;							// 预测文件的总数
+	public static Map<String, Integer> featureFrequency = new HashMap<String, Integer>();
+	// endregion
+	
+    // 从hdfs中读取数据、并写入MAP
+    public static void readMapFromHdfs(String fileName){
+        Path filePath=new Path(fileName);
+        try {
+            FileSystem fs=FileSystem.get(URI.create(fileName),conf);
+            if(fs.exists(filePath)){
+                String charset="UTF-8";             
+                FSDataInputStream fsDataInputStream=fs.open(filePath);	//打开文件数据输入流            
+                InputStreamReader inputStreamReader=new InputStreamReader(fsDataInputStream,charset);	//创建文件输入
+                String line=null;         
+                BufferedReader reader=null;								//把数据读入到缓冲区中
+                reader=new BufferedReader(inputStreamReader);
+                while((line=reader.readLine())!=null){					//从缓冲区中读取数据
+                    String[] lineContent = line.toString().split("\t");
+        			featureFrequency.put(lineContent[0], Integer.parseInt(lineContent[1]));	// 将其频数存放于全局变量
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // 从job2的输出文件统计准确率
+    public static void CountAccurate(String fileName){
+    	Path filePath=new Path(fileName);
+        try {
+            FileSystem fs=FileSystem.get(URI.create(fileName),conf);
+            if(fs.exists(filePath)){
+                String charset="UTF-8";             
+                FSDataInputStream fsDataInputStream=fs.open(filePath);	//打开文件数据输入流            
+                InputStreamReader inputStreamReader=new InputStreamReader(fsDataInputStream,charset);	//创建文件输入
+                String line=null;         
+                BufferedReader reader=null;								//把数据读入到缓冲区中
+                reader=new BufferedReader(inputStreamReader);
+                while((line=reader.readLine())!=null){					//从缓冲区中读取数据
+                    String[] lineContent = line.toString().split("\t");
+        			featureFrequency.put(lineContent[0], Integer.parseInt(lineContent[1]));	// 将其频数存放于全局变量
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+	
+	public static void main(String[] args) throws Exception
+	{	
+		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();	// 将命令行中参数自动设置到变量 conf 中
+		// region 以下为 eclopse 插件提交所添加的代码、因为之前配置的hadoopLocation 并没有完全起作用、eclipse 获取不到集群环境下的配置信息，导致提交任务是加载的配置信息为默认值
+		conf.set("fs.defaultFS", "hdfs://192.168.10.100:9000");
+		conf.set("hadoop.job.user", "ray");
+		conf.set("mapreduce.jobtracker.address", "192.168.10.100:9001");
+		conf.set("yarn.resourcemanager.hostname", "192.168.10.100");
+		conf.set("yarn.resourcemanager.admin.address", "192.168.10.100:8033");
+		conf.set("yarn.resourcemanager.address", "192.168.10.100:8032");
+		conf.set("yarn.resourcemanager.scheduler.address", "192.168.10.100:8030");
+		// endregion
+		
+		if(otherArgs.length != 2){
+			System.err.println("Usage: wordcount <in><out>");
+			System.exit(2);
+		}
+		
+		BayesPredict.InitGlobalPara();		// 初始化频数全局变量
+//		BayesPredict.GetFrequencyFile(args);	// 训练, 得到频数文件 eclipseOutput2
+		
+		// 这里遍历这个文件将其写入map全局变量
+		readMapFromHdfs("hdfs://node:9000/user/Hadoop/eclipseOutput2/part-r-00000");
+		String featureFrequencyJson = JSON.toJSONString(featureFrequency);	// 序列化
+		conf.set("featureFrequencyJson", featureFrequencyJson);				// 将序列化的map存入全局变量
+		
+		BayesPredict.Predict();												// 预测文件、并输出到 eclipseOutput4
+		System.out.println();
+		
+		// 读取预测文件算其准确率
+		
+		System.out.println(preciseCount / 2000.0);
+	}
+
+}

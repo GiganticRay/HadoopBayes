@@ -73,7 +73,7 @@ public class BayesClassifier
 		private final static IntWritable one = new IntWritable(1);
 		private Text word = new Text();
 		public Map<String, Integer> featureFrequency = null;
-		int preciseCount;
+		public static int fileCount = 0;													// 用于输出文件、记录当前行数
 		
 		// value: 每一行的内容
 		public void map(Object key, Text value, Context context) throws IOException, InterruptedException{	
@@ -84,7 +84,6 @@ public class BayesClassifier
 			if(featureFrequency == null){
 				String featureFrequencyJson = conf.get("featureFrequencyJson");
 				featureFrequency = JSON.parseObject(featureFrequencyJson, new TypeReference<Map<String, Integer>>(){});	// 反序列化
-				preciseCount = conf.getInt("preciseCount", 0);	// 统计总数
 			}
 			
 			// 统计数量
@@ -117,11 +116,9 @@ public class BayesClassifier
 				IsPProbedecimal = IsPProbedecimal.multiply(new BigDecimal(itrWordIsPraiseCount / AllIsPraiseCount));
 				IsNPProbedecimal = IsNPProbedecimal.multiply(new BigDecimal(itrWordIsNotPraiseCount / AllIsNotPraiseCount));
 			}
-			IsPraise = (IsPProbedecimal.compareTo(IsNPProbedecimal) == 1) ? "好评" : "差评";
-			if(IsThisPraise.equals(IsPraise)){												//说明预测准确
-				preciseCount++;
-			}
-			word.set(value.toString() + "\t" + IsPraise);
+			IsPraise = (IsPProbedecimal.compareTo(IsNPProbedecimal) == 1) ? "好评" : "差评";	// 判断预测结果
+			fileCount++;
+			word.set(fileCount + "\t" + IsThisPraise + "\t" + IsPraise);
 			context.write(word, one);
 		}
 	}

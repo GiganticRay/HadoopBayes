@@ -19,27 +19,24 @@ public class NBMain
 {
 	// region: 变量设置区
 	public static Configuration conf = new Configuration();	// 也可用 set 方法重新设置（会覆盖）: conf.set("fs.default.name", //"hdfs"//xxxx:9000) Configuration 类： 创建时会 | 读取 Hadoop 的配置文件，如 site-core.xml...;
-	public static int preciseCount = 0;						// 当前准确条数
+	public static double preciseCount = 0;						// 当前准确条数
+	public static double allCount = 0;							// 预测文件的总数
 	public static Map<String, Integer> featureFrequency = new HashMap<String, Integer>();
 	// endregion
 	
     // 从hdfs中读取数据、并写入MAP
-    public static void readFromHdfs(String fileName){
+    public static void readMapFromHdfs(String fileName){
         Path filePath=new Path(fileName);
         try {
             FileSystem fs=FileSystem.get(URI.create(fileName),conf);
             if(fs.exists(filePath)){
-                String charset="UTF-8";
-                //打开文件数据输入流
-                FSDataInputStream fsDataInputStream=fs.open(filePath);
-                //创建文件输入
-                InputStreamReader inputStreamReader=new InputStreamReader(fsDataInputStream,charset);
-                String line=null;
-                //把数据读入到缓冲区中
-                BufferedReader reader=null;
+                String charset="UTF-8";             
+                FSDataInputStream fsDataInputStream=fs.open(filePath);	//打开文件数据输入流            
+                InputStreamReader inputStreamReader=new InputStreamReader(fsDataInputStream,charset);	//创建文件输入
+                String line=null;         
+                BufferedReader reader=null;								//把数据读入到缓冲区中
                 reader=new BufferedReader(inputStreamReader);
-                //从缓冲区中读取数据
-                while((line=reader.readLine())!=null){
+                while((line=reader.readLine())!=null){					//从缓冲区中读取数据
                     String[] lineContent = line.toString().split("\t");
         			featureFrequency.put(lineContent[0], Integer.parseInt(lineContent[1]));	// 将其频数存放于全局变量
                 }
@@ -48,7 +45,35 @@ public class NBMain
             e.printStackTrace();
         }
     }
+    
+    
+    // 从job2的输出文件统计准确率
+    public static void CountAccurate(String fileName){
+    	Path filePath=new Path(fileName);
+        try {
+            FileSystem fs=FileSystem.get(URI.create(fileName),conf);
+            if(fs.exists(filePath)){
+                String charset="UTF-8";             
+                FSDataInputStream fsDataInputStream=fs.open(filePath);	//打开文件数据输入流            
+                InputStreamReader inputStreamReader=new InputStreamReader(fsDataInputStream,charset);	//创建文件输入
+                String line=null;         
+                BufferedReader reader=null;								//把数据读入到缓冲区中
+                reader=new BufferedReader(inputStreamReader);
+                while((line=reader.readLine())!=null){					//从缓冲区中读取数据
+                	allCount ++;
+                    String[] lineContent = line.toString().split("\t");
+                    if(lineContent[1].equals(lineContent[2])){			// 说明预测准确
+                    	preciseCount ++;
+                    }
+        			
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
+    
 	public static void main(String[] args) throws Exception
 	{	
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();	// 将命令行中参数自动设置到变量 conf 中
@@ -71,15 +96,16 @@ public class NBMain
 //		BayesPredict.GetFrequencyFile(args);	// 训练, 得到频数文件 eclipseOutput2
 		
 		// 这里遍历这个文件将其写入map全局变量
-		readFromHdfs("hdfs://node:9000/user/Hadoop/eclipseOutput2/part-r-00000");
+		readMapFromHdfs("hdfs://node:9000/user/Hadoop/eclipseOutput2/part-r-00000");
 		String featureFrequencyJson = JSON.toJSONString(featureFrequency);	// 序列化
 		conf.set("featureFrequencyJson", featureFrequencyJson);				// 将序列化的map存入全局变量
 		
-		BayesPredict.Predict();				// 预测文件、并输出		输出到 eclipseOutput4
+		BayesPredict.Predict();												// 预测文件、并输出到 eclipseOutput4
 		System.out.println();
 		
 		// 读取预测文件算其准确率
-		System.out.println(preciseCount / 2000.0);
+		CountAccurate("hdfs://node:9000/user/Hadoop/eclipseOutput4/part-m-00000");
+		System.out.println(preciseCount / allCount);
 	}
 
 }
