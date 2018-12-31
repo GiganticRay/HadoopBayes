@@ -3,26 +3,26 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="316" key="DIALOG_WIDTH"/>
 		<item value="257" key="DIALOG_Y_ORIGIN"/>
-		<item value="430" key="DIALOG_HEIGHT"/>
 		<item value="1219" key="DIALOG_X_ORIGIN"/>
+		<item value="430" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="isRegEx"/>
 		<item value="false" key="casesensitive"/>
+		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="split" key="selection"/>
+		<item value="" key="selection"/>
 		<list key="findhistory">
+			<item value="NB"/>
+			<item value="GetFrequencyMap"/>
 			<item value="split"/>
 			<item value="bool"/>
 			<item value="123"/>
 			<item value="System.o"/>
 			<item value="setjar"/>
 			<item value="featureFrequency"/>
-			<item value="BayesPredictMapper"/>
-			<item value="training"/>
 		</list>
 		<list key="replacehistory">
 		</list>

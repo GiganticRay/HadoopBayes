@@ -13,4 +13,5 @@
 <fullyQualifiedTypeName name="org.apache.hadoop.fs.FileSystem"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="com.alibaba.fastjson.JSON"/>
 </qualifiedTypeNameHistroy>

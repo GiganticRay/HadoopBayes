@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="42" version="2.0">
+<workbench progressCount="39" version="2.0">
 <workbenchAdvisor/>
 <window height="771" maximized="true" width="1006" x="0" y="24">
 <fastViewData fastViewLocation="1024"/>
@@ -41,33 +41,23 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.internal.presentations.classic.WorkbenchPresentationFactoryClassic">
 <part id="1"/>
-<part id="0"/>
 <part id="2"/>
-<part id="3"/>
-<part id="4"/>
+<part id="0"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BayesClassifier.java" partName="BayesClassifier.java" path="/home/ray/文档/HadoopBayes/workspace/wordcount2/src/BayesClassifier.java" title="BayesClassifier.java" tooltip="wordcount2/src/BayesClassifier.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/wordcount2/src/BayesClassifier.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5078" selectionTopPixel="1062"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BayesClassifier.java" partName="BayesClassifier.java" path="/home/ray/文档/HadoopBayes/workspace/NB_2016082074/src/BayesClassifier.java" title="BayesClassifier.java" tooltip="NB_2016082074/src/BayesClassifier.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NB_2016082074/src/BayesClassifier.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2997" selectionTopPixel="1365"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NBMain.java" partName="NBMain.java" path="/home/ray/文档/HadoopBayes/workspace/wordcount2/src/NBMain.java" title="NBMain.java" tooltip="wordcount2/src/NBMain.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/wordcount2/src/NBMain.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3221" selectionTopPixel="1167"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="NBMain.java" partName="NBMain.java" path="/home/ray/文档/HadoopBayes/workspace/NB_2016082074/src/NBMain.java" title="NBMain.java" tooltip="NB_2016082074/src/NBMain.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NB_2016082074/src/NBMain.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="560" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BayesPredict.java" partName="BayesPredict.java" path="/home/ray/文档/HadoopBayes/workspace/wordcount2/src/BayesPredict.java" title="BayesPredict.java" tooltip="wordcount2/src/BayesPredict.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/wordcount2/src/BayesPredict.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1306" selectionTopPixel="159"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="FileUtils.java" partName="FileUtils.java" path="/home/ray/文档/HadoopBayes/workspace/wordcount2/src/FileUtils.java" title="FileUtils.java" tooltip="wordcount2/src/FileUtils.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/wordcount2/src/FileUtils.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1363" selectionTopPixel="503"/>
-</editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MyJsonUtils.java" partName="MyJsonUtils.java" path="/home/ray/文档/HadoopBayes/workspace/wordcount2/src/MyJsonUtils.java" title="MyJsonUtils.java" tooltip="wordcount2/src/MyJsonUtils.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/wordcount2/src/MyJsonUtils.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="243" selectionTopPixel="140"/>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BayesPredict.java" partName="BayesPredict.java" path="/home/ray/文档/HadoopBayes/workspace/NB_2016082074/src/BayesPredict.java" title="BayesPredict.java" tooltip="NB_2016082074/src/BayesPredict.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/NB_2016082074/src/BayesPredict.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="25" selectionOffset="6495" selectionTopPixel="852"/>
 </editor>
 </editors>
 <views>
@@ -642,160 +632,158 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/wordcount2/src/BayesClassifier.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/wordcount2/src/NBMain.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/wordcount2/src/BayesPredict.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce(Job.class"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/wordcount2/src/MyJsonUtils.java"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce.lib.reduce(WrappedReducer.class"/>
-<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce(Mapper.class"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NB_2016082074/src/BayesClassifier.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NB_2016082074/src/NBMain.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/NB_2016082074/src/BayesPredict.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/wordcount2/src/FileUtils.java"/>
 </editors>
 <item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2515" y="0"/>
-</item>
-<item historyLabel="WrappedReducer.class" index="5">
-<position info="not_deleted" x="3715" y="0"/>
+<position info="not_deleted" x="2997" y="0"/>
 </item>
 <item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2515" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="1179" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2515" y="0"/>
-</item>
-<item historyLabel="Job.class" index="3">
-<position info="not_deleted" x="41874" y="0"/>
-</item>
-<item historyLabel="MyJsonUtils.java" index="4">
-<position info="not_deleted" x="243" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2092" y="0"/>
-</item>
-<item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="2608" y="0"/>
+<position info="not_deleted" x="3429" y="16"/>
 </item>
 <item historyLabel="BayesPredict.java" index="2">
-<position info="not_deleted" x="1254" y="0"/>
+<position info="not_deleted" x="6228" y="0"/>
 </item>
 <item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2092" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2071" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2498" y="0"/>
-</item>
-<item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="1847" y="0"/>
+<position info="not_deleted" x="5070" y="0"/>
 </item>
 <item historyLabel="BayesPredict.java" index="2">
-<position info="not_deleted" x="1254" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="1904" y="0"/>
+<position info="not_deleted" x="2300" y="0"/>
 </item>
 <item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="1847" y="0"/>
+<position info="not_deleted" x="733" y="0"/>
 </item>
 <item historyLabel="BayesPredict.java" index="2">
-<position info="not_deleted" x="1254" y="0"/>
+<position info="not_deleted" x="2349" y="15"/>
 </item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2515" y="0"/>
+<item historyLabel="NBMain.java" index="1">
+<position info="not_deleted" x="733" y="0"/>
 </item>
-<item historyLabel="Job.class" index="3">
-<position info="not_deleted" x="41874" y="0"/>
+<item historyLabel="NBMain.java" index="1">
+<position info="not_deleted" x="733" y="0"/>
 </item>
 <item historyLabel="BayesPredict.java" index="2">
-<position info="not_deleted" x="1306" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2035" y="0"/>
+<position info="not_deleted" x="6433" y="56"/>
 </item>
 <item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="2666" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="1722" y="0"/>
+<position info="not_deleted" x="733" y="0"/>
 </item>
 <item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="3221" y="0"/>
-</item>
-<item historyLabel="Job.class" index="3">
-<position info="not_deleted" x="41874" y="0"/>
-</item>
-<item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="3221" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2148" y="0"/>
-</item>
-<item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="3221" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2148" y="0"/>
+<position info="not_deleted" x="755" y="0"/>
 </item>
 <item historyLabel="BayesPredict.java" index="2">
-<position info="not_deleted" x="1306" y="0"/>
+<position info="not_deleted" x="6228" y="0"/>
 </item>
 <item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="3112" y="0"/>
-</item>
-<item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="3221" y="0"/>
+<position info="not_deleted" x="2997" y="0"/>
 </item>
 <item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="3061" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="3251" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4071" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4135" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="3775" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4135" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="3051" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4135" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2901" y="7"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4135" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="2619" y="0"/>
-</item>
-<item historyLabel="Mapper.class" index="6">
-<position info="not_deleted" x="4140" y="6"/>
-</item>
-<item historyLabel="Mapper.class" index="6">
-<position info="not_deleted" x="4780" y="0"/>
-</item>
-<item historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4958" y="0"/>
-</item>
-<item historyLabel="NBMain.java" index="1">
-<position info="not_deleted" x="3221" y="0"/>
+<position info="not_deleted" x="3213" y="0"/>
 </item>
 <item historyLabel="BayesPredict.java" index="2">
-<position info="not_deleted" x="1306" y="0"/>
+<position info="not_deleted" x="6228" y="0"/>
 </item>
-<item active="true" historyLabel="BayesClassifier.java" index="0">
-<position info="not_deleted" x="4958" y="0"/>
+<item historyLabel="NBMain.java" index="1">
+<position info="not_deleted" x="755" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="6228" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="1">
+<position info="not_deleted" x="824" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="2986" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="2893" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="2986" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="6228" y="0"/>
+</item>
+<item historyLabel="BayesClassifier.java" index="0">
+<position info="not_deleted" x="2997" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="6228" y="0"/>
+</item>
+<item historyLabel="BayesClassifier.java" index="0">
+<position info="not_deleted" x="2997" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="2312" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="1">
+<position info="not_deleted" x="820" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="2">
+<position info="not_deleted" x="2676" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="1">
+<position info="not_deleted" x="820" y="0"/>
+</item>
+<item historyLabel="BayesClassifier.java" index="3">
+<position info="not_deleted" x="2997" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="560" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="2733" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="785" y="25"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="3668" y="0"/>
+</item>
+<item historyLabel="BayesClassifier.java" index="3">
+<position info="not_deleted" x="2997" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="3668" y="0"/>
+</item>
+<item historyLabel="FileUtils.java" index="6"/>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="3668" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="627" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="4811" y="16"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="577" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="2249" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="669" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="3668" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="757" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="6443" y="0"/>
+</item>
+<item historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="794" y="0"/>
+</item>
+<item historyLabel="BayesPredict.java" index="5">
+<position info="not_deleted" x="6495" y="25"/>
+</item>
+<item active="true" historyLabel="NBMain.java" index="4">
+<position info="not_deleted" x="794" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -814,14 +802,17 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="FileOutputFormat.class" tooltip="org.apache.hadoop.mapreduce.lib.output.FileOutputFormat">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce.lib.output(FileOutputFormat.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Job.class" tooltip="org.apache.hadoop.mapreduce.Job">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce(Job.class"/>
+</file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Mapper.class" tooltip="org.apache.hadoop.mapreduce.Mapper">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce(Mapper.class"/>
 </file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="WrappedReducer.class" tooltip="org.apache.hadoop.mapreduce.lib.reduce.WrappedReducer">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce.lib.reduce(WrappedReducer.class"/>
-</file>
-<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Job.class" tooltip="org.apache.hadoop.mapreduce.Job">
-<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/hadoop2.2\/hadoop-2.2.0\/share\/hadoop\/mapreduce\/hadoop-mapreduce-client-core-2.2.0.jar&lt;org.apache.hadoop.mapreduce(Job.class"/>
 </file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="String.class" tooltip="java.lang.String">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=wordcount2/\/home\/hadoopUser\/jdk1.7.0_67\/jre\/lib\/rt.jar&lt;java.lang(String.class"/>
