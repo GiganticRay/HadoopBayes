@@ -1,0 +1,47 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.util.GenericOptionsParser;
+
+import com.alibaba.fastjson.JSON;
+
+
+
+public class NBMain
+{
+	
+
+	// endregion
+    
+	public static void main(String[] args) throws Exception
+	{	
+		BayesPredict predictor = new BayesPredict(args);
+		
+//		BayesPredict.GetFrequencyFile(args);	// 训练, 得到频数文件 eclipseOutput2
+		
+//		// 这里遍历这个文件将其写入map全局变量
+//		readMapFromHdfs("hdfs://node:9000/user/Hadoop/eclipseOutput2/part-r-00000");
+//		String featureFrequencyJson = JSON.toJSONString(featureFrequency);	// 序列化
+//		conf.set("featureFrequencyJson", featureFrequencyJson);				// 将序列化的map存入全局变量
+//		
+//		BayesPredict.Predict();												// 预测文件、并输出到 eclipseOutput4
+//		System.out.println();
+//		
+//		
+//		System.out.println(preciseCount / allCount);
+		
+		predictor.InitConfiguration();
+		predictor.GetFrequencyFile();
+
+//		predictor.GetAccurateFromPredictJob();
+	}
+
+}
