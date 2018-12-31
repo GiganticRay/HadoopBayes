@@ -1,0 +1,35 @@
+import java.util.HashMap;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+
+public class MapToJson
+{
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("key1", 1);
+		map.put("key2", 2);
+		String mapJson = JSON.toJSONString(map);
+		System.out.println(mapJson);
+		System.out.println();
+	}
+	
+    //转换字符串为Java对象集合(HashMap存储)
+    public Map<String, Integer> getPlatformMap() {
+        JSONArray platformArray = JSON.parseArray(platforms);
+        for (Object jsonObject : platformArray) {
+            PlatformModel platformModel = JSONObject.parseObject(jsonObject.toString(), PlatformModel.class);
+            platformMap.put(platformModel.getId(), platformModel);
+        }
+        return platformMap;
+    }
+
+}

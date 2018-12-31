@@ -1,0 +1,148 @@
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Map;
+import java.util.StringTokenizer;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.Reducer.Context;
+import org.apache.hadoop.conf.Configuration;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
+
+public class BayesClassifier
+{
+	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable>{
+		
+		private final static IntWritable one = new IntWritable(1);
+		private Text word = new Text();
+		
+
+		
+		// value: 每一行的内容
+		public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
+			// 将全局变量取出来反序列化为MAP
+			Configuration conf = context.getConfiguration();
+			String featureFrequencyJson = conf.get("featureFrequencyJson");
+			Map<String, Integer> featureFrequency = JSON.parseObject(featureFrequencyJson, new TypeReference<Map<String, Integer>>(){});	// 反序列化
+			
+			String IsPraise = new String();	// define a signal of IsPraise or IsNotPraise
+			StringTokenizer itr = new StringTokenizer(value.toString());
+			// IsPraise or not, 处理位于每一行第一个词的 label
+			if(itr.hasMoreTokens()){
+				IsPraise = itr.nextToken().toString();	// 获取第一个label
+				IsPraise = (IsPraise.equals("好评")) ?  "IsPraise" : "IsNotPraise";
+				word.set("IsPraise" + IsPraise);
+				context.write(word, one);
+			}
+			while(itr.hasMoreTokens())
+			{	
+				word.set(itr.nextToken() + IsPraise);
+				context.write(word, one);
+			}
+		}
+	}
+	
+	public static class IntSumReducer extends Reducer<Text, IntWritable, Text, IntWritable>{
+		private IntWritable result = new IntWritable();
+		
+		public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
+			int sum = 0;
+			for (IntWritable val : values)
+			{
+				sum += val.get();
+			}
+			
+			result.set(sum);
+			context.write(key, result);
+		}
+	}
+	
+	// 初始化每个单词频数到 featureFrequency 的全局变量
+	public static class BayesInitMapper extends Mapper<Object, Text, Text, IntWritable>{
+		private final static IntWritable one = new IntWritable(1);
+		private Text word = new Text();
+		
+		// value: 每一行的内容, 这里遍历的就是每一个变量的频数，把他们存到全局变量里面去
+		public void map(Object key, Text value, Context context) throws IOException, InterruptedException{	
+			// 将全局变量取出来反序列化为MAP
+			Configuration conf = context.getConfiguration();
+			String featureFrequencyJson = conf.get("featureFrequencyJson");
+			Map<String, Integer> featureFrequency = JSON.parseObject(featureFrequencyJson, new TypeReference<Map<String, Integer>>(){});	// 反序列化
+			
+			StringTokenizer itr = new StringTokenizer(value.toString());
+			String[] lineContent = value.toString().split("\t");
+			featureFrequency.put(lineContent[0], Integer.parseInt(lineContent[1]));	// 将其频数存放于全局变量
+			
+			// 写完之后还要再次写入Conf之中
+			featureFrequencyJson = JSON.toJSONString(featureFrequency);	// 序列化
+			conf.set("featureFrequencyJson", featureFrequencyJson);				// 将序列化的map存入全局变量
+			conf.setInt("preciseCount", preciseCount);							// 统计总数
+		}
+	}
+	
+	// 预测的 mapper
+	public static class BayesPredictMapper extends Mapper<Object, Text, Text, IntWritable>{
+		private final static IntWritable one = new IntWritable(1);
+		private Text word = new Text();
+		
+		// value: 每一行的内容
+		public void map(Object key, Text value, Context context) throws IOException, InterruptedException{	
+			String IsPraise = new String();	// define a signal of IsPraise or IsNotPraise
+			
+			// 将全局变量取出来反序列化为MAP
+			Configuration conf = context.getConfiguration();
+			String featureFrequencyJson = conf.get("featureFrequencyJson");
+			Map<String, Integer> featureFrequency = JSON.parseObject(featureFrequencyJson, new TypeReference<Map<String, Integer>>(){});	// 反序列化
+			int preciseCount = conf.getInt("preciseCount", 0);	// 统计总数
+			
+			// 统计数量
+			Double AllIsPraiseCount = 1.0 * featureFrequency.get("IsPraiseIsPraise");
+			Double AllIsNotPraiseCount = 1.0 * featureFrequency.get("IsPraiseIsNotPraise");
+			Double AllCount = AllIsPraiseCount + AllIsNotPraiseCount;
+			
+			// 应用贝叶斯公式、详见文档
+			Double IsPraiseProb = 1.0 * (AllIsPraiseCount/AllCount);
+			Double IsNotPraiseProb = 1.0 * (AllIsNotPraiseCount/AllCount);
+			
+			BigDecimal IsPProbedecimal = new BigDecimal(IsPraiseProb);
+			BigDecimal IsNPProbedecimal = new BigDecimal(IsNotPraiseProb);
+			
+			// 本条记录的好坏
+			String IsThisPraise = "";
+						
+			StringTokenizer itr = new StringTokenizer(value.toString());
+			if(itr.hasMoreTokens()){
+				// 先获取本条记录的好坏
+				IsThisPraise = (itr.nextToken().equals("好评")) ? "好评" : "差评";
+			}
+			
+			while(itr.hasMoreTokens())
+			{
+				String itrWord = itr.nextToken();
+				// 平滑处理、如果没有这个值就给他 1
+				Double itrWordIsPraiseCount = 1.0 * ((featureFrequency.containsKey((itrWord + "IsPraise"))) ? featureFrequency.get(itrWord + "IsPraise") : 0);
+				Double itrWordIsNotPraiseCount = 1.0 * ((featureFrequency.containsKey((itrWord + "IsNotPraise"))) ? featureFrequency.get(itrWord + "IsNotPraise") : 0);
+				
+//					IsPraiseProb *=  itrWordIsPraiseCount / AllIsPraiseCount;
+//					IsNotPraiseProb *= itrWordIsNotPraiseCount / AllIsNotPraiseCount;
+
+				IsPProbedecimal = IsPProbedecimal.multiply(new BigDecimal(itrWordIsPraiseCount / AllIsPraiseCount));
+				IsNPProbedecimal = IsNPProbedecimal.multiply(new BigDecimal(itrWordIsNotPraiseCount / AllIsNotPraiseCount));
+			}
+//				IsPraise = (IsPraiseProb > IsNotPraiseProb) ? "好评" : "差评";
+			IsPraise = (IsPProbedecimal.compareTo(IsNPProbedecimal) == 1) ? "好评" : "差评";
+//				说明预测准确
+//				if(IsThisPraise.equals(IsPraise) && IsThisPraise.equals("好评")){
+			if(IsThisPraise.equals(IsPraise)){
+				preciseCount++;
+			}
+			word.set(value.toString() + "\t" + IsPraise);
+			context.write(word, one);
+		}
+	}
+}

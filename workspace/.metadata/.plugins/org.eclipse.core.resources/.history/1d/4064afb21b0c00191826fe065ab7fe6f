@@ -1,0 +1,24 @@
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.hadoop.conf.Configuration;
+
+
+public class NBMain
+{
+
+	// region: 全局变量设置区
+	public static Map<String, Integer> featureFrequency = new HashMap<String, Integer>();
+	public static int preciseCount = 0;						// 当前准确条数
+	public static Configuration conf = new Configuration();	// 也可用 set 方法重新设置（会覆盖）: conf.set("fs.default.name", //"hdfs"//xxxx:9000) Configuration 类： 创建时会 | 读取 Hadoop 的配置文件，如 site-core.xml...;
+	// endregion
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+}

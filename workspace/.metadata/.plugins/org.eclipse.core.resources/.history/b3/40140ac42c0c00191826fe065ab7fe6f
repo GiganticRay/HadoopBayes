@@ -1,0 +1,14 @@
+import org.codehaus.jettison.json.JSONObject;
+
+public class MapToJson
+{
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		JSONObject map=new JSONObject();//关键要设置为true，否则乱序
+	}
+
+}

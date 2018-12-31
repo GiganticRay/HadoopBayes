@@ -1,0 +1,15 @@
+import com.alibaba.fastjson.JSON;
+
+
+public class MapToJson
+{
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		String objJson = JSON.toJSONString(Object object);
+	}
+
+}

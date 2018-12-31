@@ -1,0 +1,27 @@
+import java.util.HashMap;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
+
+public class MapToJson
+{
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("key1", 1);
+		map.put("key2", 2);
+		String mapJson = JSON.toJSONString(map);	// 序列化
+		
+		Map<String, Object> map1 = JSON.parseObject(mapJson, new TypeReference<Map<String, Object>>(){});	// 反序列化
+		System.out.println(mapJson);
+		System.out.println(map1);
+	}
+	
+
+}

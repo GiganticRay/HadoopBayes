@@ -4,16 +4,38 @@
 		<item value="87" key="DIALOG_Y_ORIGIN"/>
 		<item value="244" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jst.servlet.ui.project.facet.WebProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+	</section>
+	<section name="InstallationDialogSettings">
+		<item value="912" key="DIALOG_WIDTH"/>
+		<item value="-97" key="DIALOG_Y_ORIGIN"/>
+		<item value="11" key="DIALOG_X_ORIGIN"/>
+		<item value="1059" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
 	<section name="ShowViewDialog">
 		<item value="382" key="DIALOG_WIDTH"/>
 		<item value="org.apache.hadoop.eclipse.view.servers" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
 		<item value="234" key="DIALOG_Y_ORIGIN"/>
-		<item value="502" key="DIALOG_HEIGHT"/>
 		<item value="769" key="DIALOG_X_ORIGIN"/>
+		<item value="502" key="DIALOG_HEIGHT"/>
 		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.apache.hadoop.eclipse.view.servers"/>
 		</list>
+	</section>
+	<section name="FileExtensionDialogSettings">
+		<item value="700" key="DIALOG_WIDTH"/>
+		<item value="65" key="DIALOG_Y_ORIGIN"/>
+		<item value="18" key="DIALOG_X_ORIGIN"/>
+		<item value="431" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="EditorSelectionDialog">
 	</section>
 	<section name="ImportExportAction">
 		<item value="org.eclipse.jdt.internal.ui.jarpackager.JarPackageWizard" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
